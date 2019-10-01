@@ -1,0 +1,31 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='author' content='jngsoo')
+        title BoostCamp
+        // Bootstrap core CSS
+        link#bootstrapcss(rel='stylesheet' href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+        // General CSS
+        link(rel='stylesheet' href='stylesheets/css/general.css')
+        // Custom Bootstrap login CSS
+        link#customcss(rel='stylesheet' href='stylesheets/css/sign_in.css')
+    body
+        #view
+            .header
+            a(href='/')
+                h1.h1.font-weight-normal Welcome
+            form.form-signin(action='/login' method='post')
+                h1.h3.mb-3.font-weight-normal.text-center 로그인
+                p.state-msg #{msg}
+                label.sr-only(for='inputId') 아이디
+                input#inputId.mb-2.form-control(name='id' type='text' placeholder='아이디' required='' autofocus='')
+                label.sr-only(for='inputPassword') 비밀번호
+                input#inputPassword.form-control(name='pw' type='password' placeholder='비밀번호' required='')
+                button.btn.btn-lg.btn-primary.btn-block(type='submit') 로그인
+            a(href='/sign_up')
+                button.btn-lg.btn-warning.btn-block.mb-3 회원가입
+            .footer
+                p.p.font-weight-normal &copy; jngsoo. All Rights Reserved
+

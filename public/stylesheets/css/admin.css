@@ -1,0 +1,31 @@
+
+.admin-container {
+    margin-top: 8rem;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.admin-container > input {
+    color: gray;
+    border-radius: 1rem;
+}
+.admin-container > h1 {
+    margin: auto;
+}
+
+.admin-container > table {
+    margin: auto;
+    margin-top: 5rem;
+    border: solid 0.1rem lightgray;
+}
+
+.admin-btn {
+    border-radius: 1rem;
+    margin: auto;
+    margin-top: 2rem;
+    width: 8rem;
+    height: 4rem;
+    float: right;
+    color:gray;
+}

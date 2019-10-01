@@ -1,0 +1,19 @@
+div.header {
+    margin-top: 5rem;
+}
+div.footer {
+    margin-top: 2rem;
+}
+div.footer > p {
+    margin: auto;
+    text-align: center;
+}
+a {
+    color: black;
+    text-decoration: none;
+}
+a:hover {
+    color:black;
+    text-decoration:none;
+    cursor:pointer;
+}

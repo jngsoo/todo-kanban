@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Todo
+    block bootstrap
+    link(rel='stylesheet', href='/stylesheets/css/layout.css')
+  body
+    .navbar 
+      .navbar-logo 
+        p 
+          a(href="/") Todo
+      .right
+        if user
+          a(href='/admin') Hello #{user}
+          form.logout(action='/login/logout' method='POST')
+            input(id="logout-btn" type="submit" value="로그아웃")
+          //- a Logout
+        else
+          a(href='/') About
+          a(href='/login') Login
+    block content
+    
+
+
+
+      

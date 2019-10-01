@@ -1,0 +1,272 @@
+div.header { 
+    text-align: center;
+    font-family:'Courier New', Courier, monospace;
+}
+div.header > a { 
+  color: black;
+}
+h1 {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    text-align: center;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    border-style: solid;
+    border-radius: 1rem;
+    border-width: 0.05rem;
+    width : 30rem;
+    height: 2rem;
+    font-size: 1rem;
+}
+
+input:focus {
+    outline: none ;
+    border:1px solid lime;
+    box-shadow: 0 0 10px #719ECE;
+}
+
+a {
+    vertical-align: super;
+    color: #719ECE;
+}
+
+input[type=checkbox]{
+    width: 1rem;
+}
+
+input#interest {
+  min-width: 2rem;
+  max-width: 6rem;
+  text-align: center;
+  margin-top: auto;
+  margin-left: 0.1rem;
+  margin-bottom: auto;
+  border: groove;
+  border-radius: 1rem;
+  font-size: 1rem;
+}
+input#interest:focus {
+  border: solid;
+  border-color: lightblue;
+  box-shadow: none;
+  outline: none;
+}
+
+form > #birth {
+    display: flex;
+    flex-direction: row;
+    width: 1rem;
+}
+#year, #month_list, #date_list {
+  margin-left: 0.6rem;
+}
+
+form > #birth > input{
+    display: block;
+    text-align: center;
+    font-size: 1rem;
+    min-width: 9rem;
+}
+select {
+    margin: auto;
+    display: block;
+    text-align-last: center;
+    font-size: 1rem;
+    min-width: 9rem;
+    border-radius: 1rem;
+    width : 30rem;
+    height: 30px;
+    font-size: 1rem;
+    background: white;
+}
+
+
+div.mainBtn > div.btn {
+    display: flex;
+    flex-direction: row;
+}
+
+div.mainBtn > div.btn > button {
+    border-radius: 1rem;
+    display: block;
+    justify-content: space-between; 
+    background-color: lightblue;
+    width : 12rem;
+    height: 6rem;
+    font-size: 30px;
+    color: white;
+    margin: 2rem;
+}
+
+div.mainBtn > div.btn > button:hover {
+    outline: none ;
+    border:1px solid white(205, 230, 205);
+    background-color: white;
+    color: lightblue;
+    box-shadow: 0 0 10px  rgb(205, 230, 205);
+}
+
+/* Below is for modal */
+  
+  .overlay, .resetModal{
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+    opacity: 0;
+  }
+  .overlay:target {
+    /* visibility: visible; */
+    opacity: 1;
+  }
+  
+  .popup {
+    margin: 70px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 1rem;
+    width: 30%;
+    height: 80%;
+    position: relative;
+    overflow: hidden;
+    /* transition: all 5s ease-in-out; */
+  }
+
+  .resetModal > .popup {
+    margin: 15rem auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 1rem;
+    width: 11rem;
+    height: 10%;
+    position: relative;
+    overflow: hidden;
+    /* transition: all 5s ease-in-out; */
+  }
+
+  .resetModal > .popup > .btnLine > .btn {
+    border-radius: 1rem;
+    width: 5rem;
+    height: 2rem;
+    margin: auto;
+    background-color: lightblue;
+    color: white;
+  }
+
+  .resetModal > .popup > .btnLine > .btn:hover {
+    background-color: white;
+    color: lightblue;
+  }
+  
+  .popup h1,h2,h3,h4,h5 {
+    margin-top: 0;
+    color: #333;
+    font-family: Tahoma, Arial, sans-serif;
+  }
+  .popup .close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    transition: all 200ms;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+    color: #333;
+  }
+  .popup .close:hover {
+    color: lightblue;
+    
+  }
+  .popup .content {
+    border-color: #719ECE;
+    border-radius: 0.5rem;
+    border-style: groove;
+    width: 100%;
+    overflow: auto;
+    height:80%;
+  }
+
+  button#agree {
+    border-radius: 1rem;
+    font-size: 1.2rem;
+    color: gray;
+    background-color: white;
+    width: 10rem;
+    height: 3rem;
+    display: block;
+    margin: auto;
+  }
+  .tags {
+    min-height: 3rem;
+    max-width: 30rem;
+    display: flex;
+    flex-flow: wrap;
+  }
+  
+  .interestTag {
+    color: gray;
+    background-color: white;
+    border-style: double;
+    border-color: gray;
+    border-radius: 1rem;
+    padding: 0.5rem;
+    margin: 0.5rem;
+  }
+
+  .tagClose {
+    border-style: solid;
+    border-color: gray;
+    border-width: 0.08rem;
+    margin-left: 0.5rem;
+    padding: 0.3em 0.6em 0.3em 0.6em;
+    border-radius: 50%;
+  }
+  .tagClose:hover {
+    color:white;
+    background-color:lightblue;
+    border-color: lightblue;
+  }
+  .tagContainer {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tagInputBox {
+    display: inline-block;
+    font-size: 1rem;
+    background-color: white;
+    border-style: solid;
+    border-radius: 1rem;
+    border-width: 0.05rem;
+    width : 30rem;
+    font-size: 1rem;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  label, form > p, #popTerm {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  p.p {
+    font-family: 'Courier New', Courier, monospace;
+  }

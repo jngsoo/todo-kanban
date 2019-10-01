@@ -1,0 +1,80 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+        meta(name='author' content='jngsoo')
+        title Amazon Sign up
+        // General CSS
+        link(rel='stylesheet' href='stylesheets/css/general.css')
+        // Custom Bootstrap login CSS
+        link#customcss(rel='stylesheet' href='stylesheets/css/sign_up.css')
+    body
+        #view
+        .header
+            a(href='/')
+                h1 Amazon
+        h1 회원가입
+        form#signup_form(accept-charset='utf-8' disabled)
+            label(for='id') 아이디
+            input#id(name='id' type='text' required='')
+            p.idState
+            label(for='pw') 비밀번호
+            input#pw(name='pw' type='password' required='')
+            p.pwState
+            label(for='pw_confirm') 비밀번호 확인
+            input#pw_confirm(type='password' required='')
+            p.pwConfirmState
+            label(for='name' name='name') 이름
+            input#name(type='text')
+            br
+            label(for='birth') 생년월일
+            #birth
+                input#year(name='year' type='number' min='1920' max='2005' placeholder='연도(4자)')
+                select#month_list(name='month')
+                select#date_list(name='date')
+                option(selected='' disabled='' hidden='') 일
+            p.yearState
+            label(for='gender') 성별
+            input#gender(name='gender' list='gender_list' placeholder='성별')
+            datalist#gender_list
+                option(value='남성')
+                option(value='여성')
+            br
+            label(for='email') 이메일
+            input#email(name='email' type='email')
+            p.emailState
+            label(for='phone') 휴대전화
+            input#phone(name='phone' type='tel' placeholder='  -없이 입력해주세요. 예) 01052523434')
+            p.phoneState
+            .tagContainer
+                label(for='interest' name='interest') 관심사 (관심사 기입 후 콤마( , )를 입력하세요.)
+                .tagInputBox
+                    span.tags
+                        input#interest(type='text' placeholder='관심사 입력')
+            p.interestState
+            span.term
+                a#popTerm 약관에 동의합니다.
+                input#agreed(type='checkbox' disabled='')
+            p.termState
+            
+        .mainBtn
+            .btn
+                button#popReset(value='초기화') 초기화
+                button#register(value='회원가입') 회원가입
+        .resetModal
+            .popup
+                h3 초기화 하시겠습니까?
+                .btnLine
+                    button#resetInputs.btn YES
+                    button#closeReset.btn NO
+        .overlay
+            .popup
+                h3 개인정보 수집 및 이용에 대한 안내
+                a#closeTerm.close &times;
+                textarea#termscroll.content
+                button#agree(disabled='') 동의
+        .footer
+            p.p &copy; jngsoo. All Rights Reserved
+        script
+            include ../public/javascripts/signup.js 
