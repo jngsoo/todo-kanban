@@ -3,3 +3,12 @@
 ### 프로젝트 데이터베이스 구조
 
 ![](https://i.imgur.com/XWhvFJ1.png)
+
+
+
+### Todo 화면 기본 UI
+
+![](https://i.imgur.com/upRKbc5.png)
+
+
+
