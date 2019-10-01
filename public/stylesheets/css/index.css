@@ -1,5 +1,5 @@
 * {
-  border: dotted; }
+  border: hidden; }
 
 .lane-container {
   display: flex;
@@ -7,6 +7,8 @@
   overflow: scroll; }
 
 .lane {
+  border: solid 0.05rem gray;
+  background-color: #c1b5c845;
   margin: 0 1rem 0 1rem;
   flex: 1;
   min-width: 18rem;
@@ -20,6 +22,8 @@
   font-size: 1.5rem; }
 
 .lane-add {
+  border: dotted 0.05rem gray;
+  border-radius: 1rem;
   display: flex;
   margin: 0rem 1rem 0rem 1rem;
   min-width: 18rem;
@@ -29,6 +33,8 @@
     margin: auto; }
 
 .task {
+  border: solid 0.05rem gray;
+  background-color: white;
+  padding: 0.5rem;
   margin: 1rem 0.5rem 1rem 0.5rem;
-  border-radius: 1rem;
-  border-color: blue; }
+  border-radius: 1rem; }
