@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const util = require('../util/server.util')
-const uuidv1 = require('uuid/v1')
-const sql = require('../sql')
+const pool = require('../sql')
 
 router.get('/', function (req, res) {
     if(util.checkLogin(req)) {     // home redirect
@@ -20,15 +19,12 @@ router.post('/', function (req, res) {
         let userInfo = JSON.parse(bodyStr)
         userInfo.admin = 'false'
 
-        // sql.connect();
-        sql.query(`
+        pool.query(`
         INSERT INTO users
         VALUES 
         ('${userInfo.id}', '${userInfo.pw}', '${userInfo.name}', '${userInfo.birthdate[0]}', '${userInfo.email}', '${userInfo.phone}', '${userInfo.interests[0]}', 'false')
         `)
-        // sql.end();
 
-        
         console.log("NEW User Registered!")
         console.log(JSON.parse(bodyStr))
         res.send('ok')   // 결과를 받은 client는 '/'으로 redirect (../public/javscripts/Sign_up.js : line 351)

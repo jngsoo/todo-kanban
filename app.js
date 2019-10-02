@@ -15,7 +15,7 @@ const signUpRouter = require('./routes/signup');
 const adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 
-const sql = require('./sql')
+const pool = require('./sql')
 
 const TWO_HOURS = 1000 * 60 * 60 * 2
 const {
@@ -44,17 +44,20 @@ app.use(passport.initialize())
 app.use(passport.session())
 app.use(bodyParser.urlencoded({ extended: false }));
 
-function cb(username, password, done) {
-      let userInfo = sql.query(`SELECT * FROM users where id='${username}';`)
-      console.log(userInfo)
-      if(userInfo.length===0) {  // Invalid ID
-        return done(null, false, { message: 'Incorrect username'})
-      }
-      if(userInfo[0].pw.trim() !== password.trim()) {  // Invalid Password
-        return done(null, false, { message: 'Incorrect password.' });
-      }
-      return done(null, userInfo[0])
 
+
+function cb(username, password, done) {
+  const options = {sql: `SELECT * FROM users where id='${username}';`, rowsAsArray: false};
+  pool.query(options, (err, results) => {
+    const userInfo = results
+    if(userInfo.length===0) {  // Invalid ID
+      return done(null, false, { message: 'Incorrect username'})
+    }
+    if(userInfo[0].pw.trim() !== password.trim()) {  // Invalid Password
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+    return done(null, userInfo[0])
+  });
 }
 
 passport.use(new LocalStrategy({

@@ -3,6 +3,8 @@
 
 .lane-container {
   display: flex;
+  padding: 3rem;
+  margin: 5rem auto;
   align-items: center;
   overflow: scroll; }
 
