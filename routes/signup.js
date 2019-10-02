@@ -10,7 +10,6 @@ router.get('/', function (req, res) {
     return res.render('sign_up')
 })
 router.post('/', function (req, res) { 
-    let userCookie = util.getCookie(req)
     var bodyStr = ''
     req.on("data",function(chunk){
         bodyStr += chunk.toString()
@@ -19,10 +18,10 @@ router.post('/', function (req, res) {
         let userInfo = JSON.parse(bodyStr)
         userInfo.admin = 'false'
 
-        pool.query(`
+        pool.query(/*sql*/`
         INSERT INTO users
         VALUES 
-        ('${userInfo.id}', '${userInfo.pw}', '${userInfo.name}', '${userInfo.birthdate[0]}', '${userInfo.email}', '${userInfo.phone}', '${userInfo.interests[0]}', 'false')
+        ('${userInfo.id}', '${userInfo.pw}', '${userInfo.name}', '${userInfo.birthdate.join('.')}', '${userInfo.email}', '${userInfo.phone}', '${userInfo.interests.join(',')}', 'false', ${null});
         `)
 
         console.log("NEW User Registered!")

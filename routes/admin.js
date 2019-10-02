@@ -7,8 +7,8 @@ const pool = require('../sql')
 router.get('/', function(req, res, next) {
     
     if(util.checkAdminAuthority(req)) {   // admin 권한 check 
-        const options = {sql: `SELECT id,name,birthdate,email,phone,interests,admin FROM users`, rowsAsArray: false};
-        pool.query(options, (err, results) => {
+        const options = {sql: `SELECT user_id,name,birthdate,email,phone,interests,admin FROM users`, rowsAsArray: false};
+        pool.query(options.sql, (err, results) => {
             const allUserData = results
             res.render('admin',{
                 user: req.user.name,

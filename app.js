@@ -47,8 +47,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 
 function cb(username, password, done) {
-  const options = {sql: `SELECT * FROM users where id='${username}';`, rowsAsArray: false};
-  pool.query(options, (err, results) => {
+  const options = {sql: `SELECT * FROM users where user_id='${username}';`, rowsAsArray: false};
+
+  pool.query(options.sql, (err, results) => {
     const userInfo = results
     if(userInfo.length===0) {  // Invalid ID
       return done(null, false, { message: 'Incorrect username'})
@@ -57,7 +58,8 @@ function cb(username, password, done) {
       return done(null, false, { message: 'Incorrect password.' });
     }
     return done(null, userInfo[0])
-  });
+  })
+
 }
 
 passport.use(new LocalStrategy({
