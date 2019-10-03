@@ -50,6 +50,11 @@ async function init() {
           '2019.01.01', 'admin@admin.com', 
           '01053762932', '영화', 'true', ${null});`)).then(
         connection.execute(`
+            INSERT INTO users VALUES (
+            'super', 'super', '관리자22', 
+            '2019.01.01', 'super@super.com', 
+            '01053762932', '영화', 'true', ${null});`)).then(
+        connection.execute(`
           INSERT INTO users VALUES (
           'wt2933', 'wt2933', '정수', 
           '2019.03.29', 'asd@fwe.com', 
@@ -76,12 +81,12 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'admin-project1', 'Server-Todo', 'true', 
-          'admin', ${null});`)).then(
+          'super-project1', 'Server-Todo', 'true', 
+          'super', ${null});`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'admin-project2', 'Front-Todo', 'true', 
-          'admin', ${null});`)).then(
+          'super-project2', 'Front-Todo', 'true', 
+          'super', ${null});`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
           'jngsoo-project1', 'Server-Todo', 'true', 
@@ -100,13 +105,13 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid1', 'admin-project1', 'Todo');`)).then(
+          'laneuuid1', 'super-project1', 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid2', 'admin-project1', 'Doing');`)).then(
+          'laneuuid2', 'super-project1', 'Doing');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid3', 'admin-project1', 'Done');`)).then(
+          'laneuuid3', 'super-project1', 'Done');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
           'laneuuid4', 'jngsoo-project1', 'Todo');`)).then(
@@ -125,7 +130,7 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO auth_users VALUES (
-          'admin', 'admin-project1', 'edit');`)).then(
+          'super', 'super-project1', 'edit');`)).then(
   connection.execute(`
     CREATE TABLE log (
     id varchar(45) NOT NULL,
@@ -141,10 +146,10 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'loguuid', 'admin-project1', 'admin', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'loguuid', 'super-project1', 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'loguuid2', 'admin-project1', 'admin', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'loguuid2', 'super-project1', 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
   connection.execute(`
     CREATE TABLE tasks (
     id varchar(45) NOT NULL,

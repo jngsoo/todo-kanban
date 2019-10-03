@@ -12,7 +12,7 @@ block content
         if projects
             .projects-container
                 each project in projects
-                    a.project(href=`/${user.user_id}/${project.name}`)
+                    a.project(href=`/${project.super_user}/${project.name}`)
                         .project-title #{project.name}
                             case project.read_auth_public
                                 when 'true'
