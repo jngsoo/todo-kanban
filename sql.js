@@ -1,15 +1,16 @@
 const mysql = require('mysql2')
 
-const pool = mysql.createConnection({
-  host     : '220.230.118.56',    // 호스트 주소
-  user     : 'jngsoo',           // mysql user
-  password : 'jngsoo2933',       // mysql password
-  database : 'todo',         // mysql 데이터베이스
-  charset: 'utf8'
+const pool = mysql.createPool({
+    connectionLimit: 100,
+    host     : '220.230.118.56',    // 호스트 주소
+    user     : 'jngsoo',           // mysql user
+    password : 'jngsoo2933',       // mysql password
+    database : 'todo',         // mysql 데이터베이스
+    charset: 'utf8'
 });
 
 
-init()
+// init()
 
 
 async function init() {
@@ -58,6 +59,11 @@ async function init() {
           'jngsoo', 'jngsoo', '정수', 
           '2019.03.29', 'asd@fwe.com', 
           '01053762932', '영화', 'false', ${null});`)).then(
+        connection.execute(`
+          INSERT INTO users VALUES (
+          'test', 'test', '정수', 
+          '2019.03.29', 'asd@fwe.com', 
+          '01053762932', '영화', 'false', ${null});`)).then(
   connection.execute(`
     CREATE TABLE projects (
     id varchar(45) NOT NULL,
@@ -94,7 +100,7 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid', 'admin-project1', 'Todo');`)).then(
+          'laneuuid1', 'admin-project1', 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
           'laneuuid2', 'admin-project1', 'Doing');`)).then(
@@ -156,8 +162,15 @@ async function init() {
         connection.execute(`
           INSERT INTO tasks VALUES (
           'taskuuid', 'laneuuid2', '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
-  connection.end())
-  console.log('Database initializing end')
+        connection.execute(`
+          INSERT INTO tasks VALUES (
+          'taskuuid2', 'laneuuid1', '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+  () => {
+    connection.end()
+    console.log('Database initializing end')
+  })
+  
+  
 }
 
 

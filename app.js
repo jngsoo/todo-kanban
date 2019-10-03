@@ -15,6 +15,7 @@ const signUpRouter = require('./routes/signup');
 const adminRouter = require('./routes/admin');
 var usersRouter = require('./routes/users');
 
+
 const pool = require('./sql')
 
 const TWO_HOURS = 1000 * 60 * 60 * 2
@@ -51,10 +52,10 @@ function cb(username, password, done) {
 
   pool.query(options.sql, (err, results) => {
     const userInfo = results
-    if(userInfo.length===0) {  // Invalid ID
+    if(userInfo===undefined || userInfo.length===0) {  // Invalid ID
       return done(null, false, { message: 'Incorrect username'})
     }
-    if(userInfo[0].pw.trim() !== password.trim()) {  // Invalid Password
+    if(userInfo[0].pw !== password) {  // Invalid Password
       return done(null, false, { message: 'Incorrect password.' });
     }
     return done(null, userInfo[0])
@@ -86,11 +87,12 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
+
 app.use('/login', loginRouter)
 app.use('/sign_up', signUpRouter)
 app.use('/admin', adminRouter)
-app.use('/users', usersRouter);
+app.use('/users', usersRouter)
+app.use('/', indexRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

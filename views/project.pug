@@ -1,0 +1,34 @@
+extends layout
+
+block bootstrap
+  link(rel='stylesheet', href='/stylesheets/css/index.css')
+
+block content
+    br
+    br
+    br
+    br
+    if user
+        if projects
+            .projects-container
+                each project in projects
+                    a.project(href=`/${user.user_id}/${project.name}`)
+                        .project-title #{project.name}
+                            case project.read_auth_public
+                                when 'true'
+                                    .auth-type public
+                                when 'false'
+                                    .auth-type private
+                                default 
+                                    .auth-type error
+                        .time-stamp #{project.created}
+                a.project-add(href="/new_project")
+                    .project-title + New Project
+        
+        else
+            a.project-add(href="/new_project")
+                .project-title + New Project
+    
+    else
+        center
+            h1(style="color:gray; margin-top:20rem;") Join first! 
