@@ -7,12 +7,15 @@ block content
     .lane-container
         each lane in lanes
             .lane
-                .lane-title #{lane.name}
-                .task
-                    .task-title study js
-                    .task-content async, await, promise, etc 
-                    .task-img img goes here
-                    .task-file file goes here
+                .lane-title #{lane[0].name}
+                each task in lane
+                    
+                    .task
+                        .task-title 
+                            h3 #{task.title}
+                        .task-content #{task.content}
+                        .task-img #{task.img}
+                        .task-file #{task.file}
     
         .lane-add
             .lane-add-title + Add Column

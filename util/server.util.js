@@ -41,6 +41,19 @@ module.exports = {
             return false
         }
         return true
+    },
+
+    bindTasks(tasks) {
+        const res = {}
+        tasks.forEach( task => {
+            if(res[task.lane_id]){
+                res[task.lane_id].push(task)
+            }
+            else {
+                res[task.lane_id] = [task]
+            }
+        })
+        return res
     }
 
 }
