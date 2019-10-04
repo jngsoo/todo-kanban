@@ -2,14 +2,13 @@ const express = require('express')
 const router = express.Router()
 const app = require('../app')
 const util = require('../util/server.util')
-
 const passport = require('passport')
 
 router.get('/', function(req,res,next) {
-    if(util.checkLogin(req)) {   // 유저가 이미 로그인한 상태라면 메인 화면으로 redirect
-        res.redirect('/')
+    if(req.isAuthenticated()) {
+        return res.redirect('/')
     }
-  res.render('login')
+    res.render('login')
 })
 
 router.post('/', function(req, res, next) {
