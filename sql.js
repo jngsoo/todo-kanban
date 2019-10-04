@@ -169,7 +169,16 @@ async function init() {
           'taskuuid', 'laneuuid2', '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
+          'taskuuid1', 'laneuuid2', '물마시기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+        connection.execute(`
+          INSERT INTO tasks VALUES (
           'taskuuid2', 'laneuuid1', '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+        connection.execute(`
+          INSERT INTO tasks VALUES (
+          'taskuuid3', 'laneuuid3', '밥먹기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+        connection.execute(`
+          INSERT INTO tasks VALUES (
+          'taskuuid4', 'laneuuid4', '~~하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
   () => {
     connection.end()
     console.log('Database initializing end')

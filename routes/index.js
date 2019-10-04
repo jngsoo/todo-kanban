@@ -34,13 +34,13 @@ router.get('/:user_id', function(req, res, next) {
 
 // 위에거 거의 복붙한거라 수정해야댐
 router.get('/:user_id/:project_id', function(req, res, next) {
-    pool.query(`SELECT * FROM projects where super_user='${req.params.user_id}';`, (err, results) => {
+    pool.query(`SELECT * FROM lanes WHERE project_id = '${req.params.project_id}';`, (err, results) => {
         if (err) console.log(err.message)
         if (results===undefined) return res.render('error')
         if(req.user) { // 클라이언트가 로그인한 상태
-            res.render('projects', {
+            res.render('project_single', {
                 user: req.user,
-                projects: results
+                lanes: results
             })
         }
         else {          // 클라이언트가 로그인 안한 상태 

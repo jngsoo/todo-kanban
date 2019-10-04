@@ -1,138 +1,18 @@
 extends layout
 
 block bootstrap
-  link(rel='stylesheet', href='/stylesheets/css/index.css')
+    link(rel='stylesheet', href='/stylesheets/css/project.css')
 
 block content
-  .lane-container
-
-    .lane
-
-      .lane-title Todo
-      .task
-        .task-title study js
-        .task-content async, await, promise, etc 
-        .task-img img goes here
-        .task-file file goes here
-
-      .task
-        .task-title reading book
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
-      
-      .task
-        .task-title jfioewfjio
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
-
-    .lane
-      .lane-title Doing
-      .task
-        .task-title study js
-        .task-content async, await, promise, etc 
-        .task-img img goes here
-        .task-file file goes here
-
-      .task
-        .task-title reading book
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
-      
-      .task
-        .task-title jfioewfjio
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
-
-      .task
-        .task-title jfioewfjio
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
+    .lane-container
+        each lane in lanes
+            .lane
+                .lane-title #{lane.name}
+                .task
+                    .task-title study js
+                    .task-content async, await, promise, etc 
+                    .task-img img goes here
+                    .task-file file goes here
     
-    .lane
-      .lane-title Done
-      .task
-        .task-title study js
-        .task-content async, await, promise, etc 
-        .task-img img goes here
-        .task-file file goes here
-      
-      .task
-        .task-title jfioewfjio
-        .task-content book book book
-        .task-img img goes here
-        .task-file file goes here
-
-    //- .lane
-    //-   .lane-title Bug
-    //-   .task
-    //-     .task-title study js
-    //-     .task-content async, await, promise, etc 
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //-   .task
-    //-     .task-title jfioewfjio
-    //-     .task-content book book book
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-    
-    //- .lane
-    //-   .lane-title Issue
-    //-   .task
-    //-     .task-title study js
-    //-     .task-content async, await, promise, etc 
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //-   .task
-    //-     .task-title jfioewfjio
-    //-     .task-content book book book
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-    //- .lane
-    //-   .lane-title PR
-    //-   .task
-    //-     .task-title study js
-    //-     .task-content async, await, promise, etc 
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //-   .task
-    //-     .task-title jfioewfjio
-    //-     .task-content book book book
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //- .lane
-    //-   .lane-title PR2
-    //-   .task
-    //-     .task-title study js
-    //-     .task-content async, await, promise, etc 
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //-   .task
-    //-     .task-title jfioewfjio
-    //-     .task-content book book book
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-    //- .lane
-    //-   .lane-title PR3
-    //-   .task
-    //-     .task-title study js
-    //-     .task-content async, await, promise, etc 
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-      
-    //-   .task
-    //-     .task-title jfioewfjio
-    //-     .task-content book book book
-    //-     .task-img img goes here
-    //-     .task-file file goes here
-    .lane-add
-      .lane-add-title + Add Column
+        .lane-add
+            .lane-add-title + Add Column
