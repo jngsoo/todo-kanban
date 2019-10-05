@@ -22,7 +22,6 @@ module.exports = {
     /**
      * 접속한 유저가 로그인한 상태인지 확인하는 함수
      * @param {*} req  user request
-     * @param {*} DB user info Database ( uuid(key) : {userinfos...}(value) )
      */
     checkLogin(req) {
         if(req.user) {
