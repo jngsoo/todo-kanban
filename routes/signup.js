@@ -4,7 +4,7 @@ const util = require('../util/server.util')
 const pool = require('../sql')
 
 router.get('/', function (req, res) {
-    if(util.checkLogin(req)) {     // home redirect
+    if (req.user) {     // 이미 로그인한 상태
         return res.redirect('/')
     }
     return res.render('sign_up')

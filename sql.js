@@ -10,7 +10,7 @@ const pool = mysql.createPool({
 });
 
 
-// init()
+init()
 
 
 async function init() {

@@ -1,10 +1,13 @@
 extends layout
 
 block bootstrap
-    link(rel='stylesheet', href='/stylesheets/css/project.css')
+    link(rel='stylesheet', href='/stylesheets/css/project_single.css')
 
 block content
+    .project-info
+        h1.project-name #{project_name}
     .lane-container
+    
         each lane in lanes
             .lane
                 .lane-title #{lane[0].name}
@@ -17,4 +20,6 @@ block content
                         .task-file #{task.file}
     
         .lane-add
-            .lane-add-title + Add Column
+            .lane-add-title(data-toggle="modal" data-target="#exampleModal") + Add Column
+
+        

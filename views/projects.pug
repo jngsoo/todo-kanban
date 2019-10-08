@@ -1,34 +1,71 @@
 extends layout
 
 block bootstrap
-  link(rel='stylesheet', href='/stylesheets/css/index.css')
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
+    link(rel='stylesheet', href='/stylesheets/css/projects.css')
+
 
 block content
+
     br
     br
     br
     br
     if user
+        button.btn.btn-info(class="new-project" type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') 새 프로젝트 만들기
         if projects
+            
             .projects-container
                 each project in projects
-                    a.project(href=`/${project.super_user}/${project.id}`)
-                        .project-title #{project.name}
-                            case project.read_auth_public
-                                when 'true'
-                                    .auth-type public
-                                when 'false'
-                                    .auth-type private
-                                default 
-                                    .auth-type error
-                        .time-stamp #{project.created}
-                a.project-add(href="/new_project")
-                    .project-title + New Project
+                    .project-container
+                        a.project(href=`/${project.super_user}/${project.id}` id=`${project.id}`)
+                            .project-title #{project.name}
+                                case project.read_auth_public
+                                    when 'true'
+                                        .auth-type public
+                                    when 'false'
+                                        .auth-type private
+                                    default 
+                                        .auth-type error
+                            .time-stamp #{project.created}
+                        button.btn.btn-outline-danger.delete-project(type="button") 삭제
+                        
+    
         
-        else
-            a.project-add(href="/new_project")
-                .project-title + New Project
+        #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+            .modal-dialog(role='document')
+                .modal-content
+                    form(action='/project' method='POST')
+                        .modal-header
+                            h5#exampleModalLabel.modal-title 새로운 프로젝트
+                            button.close(type='button' data-dismiss='modal' aria-label='Close')
+                                span(aria-hidden='true') &times;
+                        .modal-body
+                            
+                                .form-group
+                                    label.col-form-label(for='project-name') 프로젝트 이름
+                                    input#project-name.form-control(type='text' name="project_name")
+                                .form-group
+                                    .authority
+                                        button#auth-public.btn.btn-outline-primary(type="button") 공개
+                                        button.btn.btn-outline-primary(type="button") 비공개
+                                        button.btn.btn-outline-primary.auth-user-set(type="button") 특정 사용자 공개
+                                #auth-users-input.form-group
+                                    
+                        .modal-footer
+                            button#new-pjt-submit.btn.btn-primary(type='button') 프로젝트 만들기
+                            button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
+                        
+            
+        
     
     else
         center
             h1(style="color:gray; margin-top:20rem;") Join first! 
+    
+    // Bootstrap
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+    script
+        include ../public/javascripts/projects.js 

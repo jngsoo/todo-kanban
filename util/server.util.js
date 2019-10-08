@@ -20,26 +20,26 @@ module.exports = {
 
 
     /**
-     * 접속한 유저가 로그인한 상태인지 확인하는 함수
+     * 접속한 유저가 로그인한 상태인지 확인하는 함수 (로그인 안한 상태면 로그인 화면으로 redirect)
      * @param {*} req  user request
      */
-    checkLogin(req) {
+    checkLogin(req, res ,next) {
         if(req.user) {
-            return true
+            return next()
         }
-        return false
+        return res.redirect('/login')
     },
 
 
     /**
-     * 접속한 유저의 admin 권한을 확인하는 함수
+     * 접속한 유저의 admin 권한을 확인하는 미들웨어
      * @param {*} req user request
      */
-    checkAdminAuthority(req) {
+    checkAdminAuthority(req, res, next) {
         if(req.user === undefined || req.user.admin==='false') {   // admin 권한이 없으면 redirect to root
-            return false
+            return res.redirect('/')
         }
-        return true
+        next()
     },
 
     bindTasks(tasks) {

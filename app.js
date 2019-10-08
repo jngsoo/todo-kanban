@@ -1,19 +1,19 @@
-var createError = require('http-errors');
-var express = require('express');
+const createError = require('http-errors');
+const express = require('express');
 const session = require('express-session')   
-var FileStore = require('session-file-store')(session);
+const FileStore = require('session-file-store')(session);
 
 
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
-var bodyParser = require("body-parser"); 
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
+const bodyParser = require("body-parser"); 
 
-var indexRouter = require('./routes/index');
+const indexRouter = require('./routes/index');
 const loginRouter = require('./routes/login')
 const signUpRouter = require('./routes/signup');
 const adminRouter = require('./routes/admin');
-var usersRouter = require('./routes/users');
+const pjtRouter = require('./routes/project');
 
 
 const pool = require('./sql')
@@ -91,8 +91,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/login', loginRouter)
 app.use('/sign_up', signUpRouter)
 app.use('/admin', adminRouter)
-app.use('/users', usersRouter)
-app.use('/', indexRouter);
+app.use('/project', pjtRouter)
+app.use('/', indexRouter);          // 동적 라우팅은 맨 마지막에
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

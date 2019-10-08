@@ -1,4 +1,7 @@
-
+a:hover {
+    text-decoration: none;
+    cursor: pointer; 
+}
 
 .projects-container {
     display: flex;
@@ -9,16 +12,21 @@
     margin: 3rem 5rem 3rem 5rem;
 }
 
+.project-container {
+    display: flex;
+    background-color: white;
+    border: solid 0.05rem gray;
+    margin: 1rem 5rem 1rem 5rem;
+    border-radius: 1rem;
+    height: 6rem;
+}
+
 .project   {
     display: flex;
     align-items: center;
-    height: 6rem;
     color: black;
     text-decoration: none;
-    background-color: white;
-    border: solid 0.05rem gray;
-    border-radius: 1rem;
-    margin: 1rem 5rem 1rem 5rem;
+    
 }
 
 .project-title {
@@ -43,15 +51,28 @@
     height: 1rem;
 }
 
-.project-add {
-    display: flex;
-    align-items: center;
-    height: 6rem;
-    color: gray;
-    text-decoration: none;
-    background-color: white;
-    border: dotted 0.1rem gray;
-    border-radius: 1rem;
-    margin: 1rem 5rem 1rem 5rem;
+.delete-project {
+    margin-top: 2%;
+    position: absolute;
+    right: 15%;
+}
 
+.project-add:hover {
+    cursor: pointer;
+}
+
+.new-project {
+    margin-left: 5rem;
+    float: left;
+}
+
+.authority {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.authority > button {
+    border: solid gray 0.05rem;
+    margin-right: 1rem;
+    color: black;
 }
