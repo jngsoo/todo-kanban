@@ -18,19 +18,30 @@
     overflow: scroll; }
   
   .lane {
-    border: solid 0.05rem gray;
+    border: solid 0.05rem lightgray;
     background-color: #c1b5c845;
     margin: 0 1rem 0 1rem;
     flex: 1;
     min-width: 18rem;
     max-width: 20rem;
     border-radius: 1rem; }
+     
+.lane-header {
+    display: flex;
+}
+
+.lane-header > .dropdown > .dropdown-toggle {
+  position: absolute;
+  margin: 1rem 0rem 1rem 11rem;
+  border: gray solid 0.05rem;
+  background-color: white;
+}
   
   .lane-title {
     text-align: left;
     margin: 0.5rem;
     height: 2rem;
-    font-size: 1.5rem; }
+    font-size: 1.2rem; }
   
   .lane-add {
     border: dotted 0.05rem gray;
@@ -43,10 +54,19 @@
     .lane-add .lane-add-title {
       margin: auto; }
   
-  .task {
-    border: solid 0.05rem gray;
-    background-color: white;
-    padding: 0.5rem;
-    margin: 1rem 0.5rem 1rem 0.5rem;
-    border-radius: 1rem; }
-  
+.card {
+    margin: 1rem;
+}
+
+
+.card-close {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    margin-left: 14rem;
+    margin-top: -0.5rem;
+  }
+
+  .card-close:hover {
+    cursor: pointer;
+  }

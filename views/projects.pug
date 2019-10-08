@@ -12,7 +12,7 @@ block content
     br
     br
     if user
-        button.btn.btn-info(class="new-project" type='button' data-toggle='modal' data-target='#exampleModal' data-whatever='@getbootstrap') 새 프로젝트 만들기
+        button.btn.btn-info(class="new-project" type='button' data-toggle='modal' data-target='#new-project-form' data-whatever='@getbootstrap') 새 프로젝트 만들기
         if projects
             
             .projects-container
@@ -32,7 +32,7 @@ block content
                         
     
         
-        #exampleModal.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+        #new-project-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
             .modal-dialog(role='document')
                 .modal-content
                     form(action='/project' method='POST')

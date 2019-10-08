@@ -29,7 +29,10 @@ router.post('/', util.checkLogin, function (req, res) {
 
 router.delete('/', util.checkLogin, function (req, res, next) {
     model.cascadeRemove(req.body.project_id)
-    console.log(req.body)
+})
+
+router.delete('/task', util.checkLogin, function (req, res, next) {
+    model.removeTask(req.body.task_id)
 })
 
 

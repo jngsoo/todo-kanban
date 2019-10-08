@@ -1,6 +1,7 @@
 extends layout
 
 block bootstrap
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css' integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T' crossorigin='anonymous')
     link(rel='stylesheet', href='/stylesheets/css/project_single.css')
 
 block content
@@ -9,17 +10,58 @@ block content
     .lane-container
     
         each lane in lanes
-            .lane
-                .lane-title #{lane[0].name}
+            .lane(id=`${lane[0].lane_id}`)
+                .lane-header
+                    .lane-title #{lane[0].name}
+                    .dropdown
+                        button#dropdownMenuButton.btn.btn-light.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true')
+                        .dropdown-menu(aria-labelledby='dropdownMenuButton')
+                            a.dropdown-item(href='#' data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') 추가
+                            a.dropdown-item(href='#') 수정
+                            a.dropdown-item(href='#') 삭제
+                            
+
                 each task in lane
-                    .task
-                        .task-title 
-                            h3 #{task.title}
-                        .task-content #{task.content}
-                        .task-img #{task.img}
-                        .task-file #{task.file}
-    
+                    .card(id=`${task.id}`)
+                        if task.img
+                            img.card-img-top(src='...' alt='...')
+                        .card-body
+                            .card-close &times;
+                            h5.card-title #{task.title} 
+                            p.card-text #{task.content}
+
         .lane-add
             .lane-add-title(data-toggle="modal" data-target="#exampleModal") + Add Column
 
+
+    #new-task-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                form(action='/project/task' method='POST')
+                    .modal-header
+                        h5#exampleModalLabel.modal-title New note
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                            span(aria-hidden='true') &times;
+                    .modal-body
+                        
+                            .form-group
+                                label.col-form-label(for='project-name') 제목
+                                input#task-title.form-control(type='text' name="task_title")
+                            .form-group
+                                label.col-form-label(for='task-content') 내용
+                                textarea#task-content.form-control(rows="5" type='textarea' name="task_content")
+
+
+             
+
+                    .modal-footer
+                        button#new-pjt-submit.btn.btn-primary(type='button') 추가하기
+                        button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
+    
+    // Bootstrap
+    script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js' integrity='sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo' crossorigin='anonymous')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js' integrity='sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1' crossorigin='anonymous')
+    script(src='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js' integrity='sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM' crossorigin='anonymous')
+    script
+        include ../public/javascripts/project_single.js 
         

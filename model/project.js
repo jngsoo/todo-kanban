@@ -21,6 +21,9 @@ module.exports = {
                             })
                         }
         )
+    },
+    removeTask(task_id) {
+        pool.query(`DELETE FROM tasks WHERE id = '${task_id}';`)
     }
 }
 
