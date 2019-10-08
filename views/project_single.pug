@@ -16,9 +16,9 @@ block content
                     .dropdown
                         button#dropdownMenuButton.btn.btn-light.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true')
                         .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                            a.dropdown-item(href='#' data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') 추가
-                            a.dropdown-item(href='#') 수정
-                            a.dropdown-item(href='#') 삭제
+                            a.dropdown-item(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') 추가
+                            a.dropdown-item.edit-lane-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') 수정
+                            a.dropdown-item() 삭제
                             
 
                 each task in lane
@@ -32,6 +32,24 @@ block content
 
         .lane-add
             .lane-add-title(data-toggle="modal" data-target="#exampleModal") + Add Column
+
+    #edit-lane-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='edit-lane' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                form(action='/project/lane' method='PUT')
+                    .modal-header
+                        h5#edit-lane.modal-title Edit Column
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                            span(aria-hidden='true') &times;
+                    .modal-body
+                        
+                            .form-group
+                                label.col-form-label(for='lane-title') Column name
+                                input#lane-title.form-control(type='text' name="lane_title")
+                            
+                            .modal-footer
+                                button#edit-lane-submit.btn.btn-primary(type='button' data-dismiss='modal') 수정하기
+                                button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
 
 
     #new-task-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
@@ -50,12 +68,8 @@ block content
                             .form-group
                                 label.col-form-label(for='task-content') 내용
                                 textarea#task-content.form-control(rows="5" type='textarea' name="task_content")
-
-
-             
-
                     .modal-footer
-                        button#new-pjt-submit.btn.btn-primary(type='button') 추가하기
+                        button#new-pjt-submit.btn.btn-primary(type='button' data-dismiss='modal') 추가하기
                         button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
     
     // Bootstrap

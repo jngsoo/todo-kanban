@@ -24,11 +24,9 @@ module.exports = {
     },
     removeTask(task_id) {
         pool.query(`DELETE FROM tasks WHERE id = '${task_id}';`)
+    },
+    editLaneTitle(lane_id, title) {
+        console.log('editlanetitle!')
+        pool.query(`UPDATE lanes SET name='${title}' WHERE id = '${lane_id}';`)
     }
 }
-
-
-// SELECT * FROM Customers
-// WHERE Country IN ('Germany', 'France', 'UK');
-
-

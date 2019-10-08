@@ -27,6 +27,12 @@ router.post('/', util.checkLogin, function (req, res) {
 
 })
 
+router.put('/lane', util.checkLogin, function (req, res, next) {
+    const laneId = req.body.lane_id
+    const newTitle = req.body.lane_title
+    model.editLaneTitle(laneId, newTitle)
+})
+
 router.delete('/', util.checkLogin, function (req, res, next) {
     model.cascadeRemove(req.body.project_id)
 })
