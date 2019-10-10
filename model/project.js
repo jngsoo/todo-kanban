@@ -10,22 +10,19 @@ module.exports = {
                             results.forEach(lane => {
                                 lanes.push(`'${lane.id}'`)
                             })
-                            pool.query(`DELETE FROM tasks WHERE lane_id IN (${lanes.join(',')})`, () => {
-                                pool.query(`DELETE FROM lanes WHERE project_id = '${project_id}'`, () => {
-                                    pool.query(`DELETE FROM auth_users WHERE project_id = '${project_id}'`, () => {
-                                        pool.query(`DELETE FROM log WHERE project_id = '${project_id}'`, () => {
-                                            pool.query(`DELETE FROM projects WHERE id = '${project_id}'`)
-                                        })
-                                    })
-                                }) 
-                            })
+                            pool.query(`DELETE FROM projects WHERE id = '${project_id}'`)
                         }
         )
     },
-    removeTask(task_id) {
-        pool.query(`DELETE FROM tasks WHERE id = '${task_id}';`)
-    },
     editLaneTitle(lane_id, title) {
         pool.query(`UPDATE lanes SET name='${title}' WHERE id = '${lane_id}';`)
+    },
+    removeLane(lane_id) {
+        pool.query()
+        //cascade query!
+    },
+    removeTask(task_id) {
+        pool.query(`DELETE FROM tasks WHERE id = '${task_id}';`)
     }
+ 
 }

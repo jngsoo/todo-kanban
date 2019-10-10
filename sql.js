@@ -10,7 +10,7 @@ const pool = mysql.createPool({
 });
 
 
-// init()
+init()
 
 
 async function init() {
@@ -77,7 +77,8 @@ async function init() {
     super_user VARCHAR(45),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (super_user) REFERENCES users(user_id))
+    FOREIGN KEY (super_user) REFERENCES users(user_id)
+    ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
@@ -101,7 +102,8 @@ async function init() {
     project_id VARCHAR(45) NOT NULL,
     name VARCHAR(45) NOT NULL,
     PRIMARY KEY (id),
-    FOREIGN KEY (project_id) REFERENCES projects(id))
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
@@ -126,7 +128,8 @@ async function init() {
     user_id varchar(45) NOT NULL,
     project_id VARCHAR(45) NOT NULL,
     auth_type VARCHAR(45) NOT NULL,
-    FOREIGN KEY (project_id) REFERENCES projects(id))
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO auth_users VALUES (
@@ -142,7 +145,8 @@ async function init() {
     target VARCHAR(45),
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (project_id) REFERENCES projects(id))
+    FOREIGN KEY (project_id) REFERENCES projects(id)
+    ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
@@ -162,7 +166,8 @@ async function init() {
     prev VARCHAR(45),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY (id),
-    FOREIGN KEY (lane_id) REFERENCES lanes(id))
+    FOREIGN KEY (lane_id) REFERENCES lanes(id)
+    ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (

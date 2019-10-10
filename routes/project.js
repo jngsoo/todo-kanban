@@ -37,6 +37,11 @@ router.put('/lane', util.checkLogin, function (req, res, next) {
     model.editLaneTitle(laneId, newTitle)
 })
 
+router.delete('/lane', util.checkLogin, function (req, res, next) {
+    model.removeLane(req.body.lane_id)
+})
+
+
 
 
 router.delete('/task', util.checkLogin, function (req, res, next) {

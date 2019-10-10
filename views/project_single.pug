@@ -14,9 +14,9 @@ block content
                 .lane-header
                     .lane-title #{lane[0].name}
                     .icons
-                        a.add-task.edit-lane-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') &#9997;
-                        a.edit-lane-name(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') ➕ 
-                        a.delete-lane(data-toggle='modal' data-target='#delete-task-check' data-whatever='@getbootstrap') &#10008;
+                        a.edit-lane-name-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') &#9997;
+                        a.add-task(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') ➕ 
+                        a.delete-lane-btn(data-toggle='modal' data-target='#delete-task-check' data-whatever='@getbootstrap') &#10008;
                             
 
                 each task in lane
