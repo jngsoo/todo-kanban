@@ -24,8 +24,10 @@
   }
 
   .log {
+      overflow: scroll;
     margin-right: 3rem;
     opacity: 0.8;
+    max-height: 30rem;
 
   }
   

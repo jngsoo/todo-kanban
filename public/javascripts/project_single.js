@@ -6,14 +6,22 @@ $('.lane-container').addEventListener('click', e => {
     const innerClassName = e.target.className.split(' ')[0]
     // Remove clicked card
     if (innerClassName === 'card-close') {
+        const lane = e.target.parentNode.parentNode.parentNode.parentNode
+        const laneTitle = lane.querySelector('.lane-title').innerHTML
         const targetCard = e.target.parentNode.parentNode
+        
+        console.log(laneTitle)
         targetCard.parentNode.removeChild(targetCard)
 
         const removeTargetId = targetCard.id.slice(1)
         const url = '/project/task';
         const data = {
-            task_id : removeTargetId
+            project_id : projectId,
+            task_id : removeTargetId,
+            task_title : targetCard.querySelector('.card-title').innerHTML,
+            lane_title : laneTitle
         };
+        console.log(data)
         fetch(url, {
         method: 'DELETE', // 
         body: JSON.stringify(data), // data can be `string` or {object}!
@@ -117,7 +125,9 @@ $('#delete-lane-confirm').addEventListener('click', e => {
     // Back (DB)
     const url = '/project/lane';
     const data = {
-        lane_id : deleteTargetId
+        project_id : projectId,
+        lane_id : deleteTargetId,
+        lane_title : targetLane.querySelector('.lane-title').innerHTML
     };  
     console.log(data)
 
@@ -134,15 +144,6 @@ $('#delete-lane-confirm').addEventListener('click', e => {
 
 $('#create-task-submit').addEventListener('click', () => {
 
-    // Front
-    const newTaskTitle = $('#create-task-title').value
-    const newTaskContent = $('#create-task-content').value
-    const targetLaneId = createNewTask('임시id', newTaskTitle, newTaskContent) // 새로운 카드 그리는 동시에 target lane id 값 가져옴
-    $('#create-task-title').value = ''
-    $('#create-task-content').value = ''
-
-    // Back (DB)
-
     // Get new task id 
     let url = '/project/new_task_id';
     fetch(url, {
@@ -152,14 +153,22 @@ $('#create-task-submit').addEventListener('click', () => {
     }
     }).then(res => res.json())
     .then(response => {
-        let newTaskId = response.newTaskId
+        let newTaskId = response.newTaskId          // Front
+        const newTaskTitle = $('#create-task-title').value
+        const newTaskContent = $('#create-task-content').value
+        const targetLaneId = createNewTask(newTaskId, newTaskTitle, newTaskContent) // 새로운 카드 그리는 동시에 target lane id 값 가져옴
+        $('#create-task-title').value = ''
+        $('#create-task-content').value = ''
         url = '/project/task';                      // Create new lane (Back)
         const data = {
+            project_id : projectId,
             task_id : newTaskId,
             frg_lane_id : Number(targetLaneId),
+            lane_title : $(`#l${targetLaneId}`).querySelector('.lane-title').innerHTML,
             task_title : newTaskTitle,
             task_content : newTaskContent
         };
+        console.log(data)
         fetch(url, {
         method: 'POST', // 
         body: JSON.stringify(data),

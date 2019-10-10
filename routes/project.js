@@ -66,6 +66,7 @@ router.post('/task', util.checkLogin, function(req, res, next) {
                      req.body.frg_lane_id,
                      req.body.task_title,
                      req.body.task_content)
+    model.pushLog(null, req.body.project_id, req.user.user_id, req.body.task_title, '추가', req.body.lane_title, '') 
 })
 
 // Column 삭제
@@ -77,6 +78,7 @@ router.delete('/lane', util.checkLogin, function (req, res, next) {
 
 router.delete('/task', util.checkLogin, function (req, res, next) {
     model.removeTask(req.body.task_id)
+    model.pushLog(null, req.body.project_id, req.user.user_id, req.body.task_title, '삭제', req.body.lane_title, '') 
     return
 })
 
