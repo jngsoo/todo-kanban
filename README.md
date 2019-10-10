@@ -1,5 +1,21 @@
 # 멤버십 프로젝트 - 웹할일관리 저장소
 
+### Demo
+http://220.230.118.56:3000
+
+##### Test id, pw
+```
+Test user
+id : super
+pw : super
+
+Admin user
+id : admin
+pw : admin
+```
+
+
+---
 ### 데이터베이스 구조
 
 ![](https://i.imgur.com/XWhvFJ1.png)
