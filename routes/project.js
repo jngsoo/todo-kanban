@@ -4,6 +4,7 @@ const util = require('../util/server.util')
 const pool = require('../sql')
 const model = require('../model/project')
 
+// 새 프로젝트 생성
 router.post('/', util.checkLogin, function (req, res) {
 
     // 해당 유저의 가장 마지막 프로젝트 아이디 가져오기
@@ -27,25 +28,40 @@ router.post('/', util.checkLogin, function (req, res) {
 
 })
 
+// 기존 프로젝트 삭제
 router.delete('/', util.checkLogin, function (req, res, next) {
     model.cascadeRemove(req.body.project_id)
 })
 
+// Column 추가 
+router.post('/lane', util.checkLogin, function (req, res, next) {
+    model.createLane(req.body.lane_id, req.body.project_id, req.body.lane_title)
+})
+
+// Column 이름 수정
 router.put('/lane', util.checkLogin, function (req, res, next) {
     const laneId = req.body.lane_id
     const newTitle = req.body.lane_title
     model.editLaneTitle(laneId, newTitle)
+    return
 })
 
+router.get('/new_lane_id', util.checkLogin, async function (req, res, next) {
+    const lastLaneId = await model.getLastLaneId()
+    const newLaneId = 'l' + (Number(lastLaneId[0][0].id.slice(1)) + 1)
+    res.send({newLaneId : newLaneId})
+})
+
+// Column 삭제
 router.delete('/lane', util.checkLogin, function (req, res, next) {
     model.removeLane(req.body.lane_id)
+    return
 })
-
-
 
 
 router.delete('/task', util.checkLogin, function (req, res, next) {
     model.removeTask(req.body.task_id)
+    return
 })
 
 

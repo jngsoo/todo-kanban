@@ -42,6 +42,51 @@ $('.lane-container').addEventListener('click', e => {
     }
 })
 
+$('#create-lane-submit').addEventListener('click', e => {
+
+    let newLaneId
+
+    //Front
+    // Get new lane id and create new lane
+    let url = '/project/new_lane_id';
+    fetch(url, {
+    method: 'GET', // 
+    headers:{
+        'Content-Type': 'application/json'
+    }
+    }).then(res => res.json())
+    .then(response => {
+        newLaneId = response.newLaneId
+        newLaneTitle = $('#create-lane-title').value
+        createNewLane(newLaneId, newLaneTitle)     // Create new lane (Front)
+
+        url = '/project/lane';                      // Create new lane (Back)
+        const data = {
+            lane_id : newLaneId,
+            project_id : window.location.href.split('/').pop(),
+            lane_title : newLaneTitle
+        };
+        fetch(url, {
+        method: 'POST', // 
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+        }).then(res => res.json())
+        .then(response => {console.log(response)})
+        .catch(error => console.error('Error:', error));    
+    })
+    .catch(error => console.error('Error:', error));    
+
+
+
+
+
+
+
+
+})
+
 // Edit clicked lane title
 $('#edit-lane-submit').addEventListener('click', e => {
 
@@ -66,8 +111,8 @@ $('#edit-lane-submit').addEventListener('click', e => {
     .catch(error => console.error('Error:', error));    
 })
 
-$('#new-pjt-submit').addEventListener('click', () => {
-    alert('new pjt submit!')
+$('#new-task-submit').addEventListener('click', () => {
+    alert('new task submit!')
 })
 
 $('#delete-lane-confirm').addEventListener('click', e => {
@@ -92,8 +137,21 @@ $('#delete-lane-confirm').addEventListener('click', e => {
     }).then(res => res.json())
     .then(response => console.log(response))
     .catch(error => console.error('Error:', error));    
-
-    // console.log($(`#${deleteTargetId}`))
-
-    // alert('del lane confirm!')
 })
+
+const createNewLane = (id, title) => {
+    const newLane = document.createElement('div');
+    newLane.innerHTML = /*html*/`
+                        <div class="lane" id="${id}">
+                            <div class="lane-header">
+                                <div class="lane-title">${title}</div>
+                                <div class="icons">
+                                    <a class="edit-lane-name-btn" data-toggle="modal" data-target="#edit-lane-form" data-whatever="@getbootstrap">✍</a>
+                                    <a class="add-task" data-toggle="modal" data-target="#new-task-form" data-whatever="@getbootstrap">➕</a>
+                                    <a class="delete-lane-btn" data-toggle="modal" data-target="#delete-lane-check" data-whatever="@getbootstrap">✘</a>
+                                </div>
+                            </div>
+                        </div>`
+    $('.lane-add').insertAdjacentElement('beforebegin', newLane)
+    $('#create-lane-title').value = ''
+}

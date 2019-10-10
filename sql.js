@@ -10,7 +10,7 @@ const pool = mysql.createPool({
 });
 
 
-init()
+// init()
 
 
 async function init() {
@@ -107,22 +107,22 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid1', 'super-project1', 'Todo');`)).then(
+          'l1', 'super-project1', 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid2', 'super-project1', 'Doing');`)).then(
+          'l2', 'super-project1', 'Doing');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid3', 'super-project1', 'Done');`)).then(
+          'l3', 'super-project1', 'Done');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid4', 'jngsoo-project1', 'Todo');`)).then(
+          'l4', 'jngsoo-project1', 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid5', 'jngsoo-project1', 'Doing');`)).then(
+          'l5', 'jngsoo-project1', 'Doing');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'laneuuid6', 'jngsoo-project1', 'Done');`)).then(
+          'l6', 'jngsoo-project1', 'Done');`)).then(
   connection.execute(`
     CREATE TABLE auth_users (
     user_id varchar(45) NOT NULL,
@@ -150,10 +150,10 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'loguuid', 'super-project1', 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'log1', 'super-project1', 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'loguuid2', 'super-project1', 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'log2', 'super-project1', 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
   connection.execute(`
     CREATE TABLE tasks (
     id varchar(45) NOT NULL,
@@ -171,19 +171,19 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          'taskuuid', 'laneuuid2', '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          't1', 'l2', '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          'taskuuid1', 'laneuuid2', '물마시기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          't2', 'l2', '물마시기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          'taskuuid2', 'laneuuid1', '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          't3', 'l1', '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          'taskuuid3', 'laneuuid3', '밥먹기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          't4', 'l3', '밥먹기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          'taskuuid4', 'laneuuid4', '~~하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          't5', 'l4', '~~하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
   () => {
     connection.end()
     console.log('Database initializing end')

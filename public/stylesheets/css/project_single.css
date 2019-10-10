@@ -22,19 +22,20 @@
     background-color: #c1b5c845;
     margin: 0 1rem 0 1rem;
     flex: 1;
-    min-width: 18rem;
     min-height: 12rem;
     max-width: 20rem;
     border-radius: 1rem; }
      
 .lane-header {
-    display: flex;
+    margin: auto 1rem auto 1rem;
+    display:inline-flex;
+    width: 17rem;
     align-items: center;
 }
 
 .lane-header > .icons {
-    position: absolute;
-    margin-left: 14rem;
+    margin: auto 0.3rem auto auto;
+    float: right;
     color: #454242;
     font-size: 120%;
   }
@@ -63,6 +64,9 @@
     max-width: 20rem; }
     .lane-add .lane-add-title {
       margin: auto; }
+.lane-add:hover {
+    cursor: pointer;
+}
   
 .card {
     margin: 1rem;
@@ -70,7 +74,6 @@
 
 
 .card-close {
-    width: 2rem;
     height: 2rem;
     position: absolute;
     margin-left: 14rem;
