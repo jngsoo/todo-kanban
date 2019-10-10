@@ -71,93 +71,93 @@ async function init() {
           '01053762932', '영화', 'false', ${null});`)).then(
   connection.execute(`
     CREATE TABLE projects (
-    id varchar(45) NOT NULL,
+    project_id INT(255) NOT NULL,
     name VARCHAR(45) NOT NULL,
     read_auth_public VARCHAR(45),
     super_user VARCHAR(45),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
+    PRIMARY KEY (project_id),
     FOREIGN KEY (super_user) REFERENCES users(user_id)
     ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'super-project1', 'Server-Todo', 'true', 
+          1, 'Server-Todo', 'true', 
           'super', ${null});`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'super-project2', 'Front-Todo', 'true', 
+          2, 'Front-Todo', 'true', 
           'super', ${null});`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'jngsoo-project1', 'Server-Todo', 'true', 
+          3, 'Server-Todo', 'true', 
           'jngsoo', ${null});`)).then(
         connection.execute(`
           INSERT INTO projects VALUES (
-          'wt2933-project1', 'My Todo', 'true', 
+          4, 'My Todo', 'true', 
           'wt2933', ${null});`)).then(
   connection.execute(`
     CREATE TABLE lanes (
-    id varchar(45) NOT NULL,
-    project_id VARCHAR(45) NOT NULL,
+    lane_id INT(255) NOT NULL,
+    project_id INT(255) NOT NULL,
     name VARCHAR(45) NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY (project_id) REFERENCES projects(id)
+    PRIMARY KEY (lane_id),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)
     ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l1', 'super-project1', 'Todo');`)).then(
+          1, 1, 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l2', 'super-project1', 'Doing');`)).then(
+          2, 1, 'Doing');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l3', 'super-project1', 'Done');`)).then(
+          3, 1, 'Done');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l4', 'jngsoo-project1', 'Todo');`)).then(
+          4, 2, 'Todo');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l5', 'jngsoo-project1', 'Doing');`)).then(
+          5, 2, 'Doing');`)).then(
         connection.execute(`
           INSERT INTO lanes VALUES (
-          'l6', 'jngsoo-project1', 'Done');`)).then(
+          6, 2, 'Done');`)).then(
   connection.execute(`
     CREATE TABLE auth_users (
     user_id varchar(45) NOT NULL,
-    project_id VARCHAR(45) NOT NULL,
+    project_id INT(255) NOT NULL,
     auth_type VARCHAR(45) NOT NULL,
-    FOREIGN KEY (project_id) REFERENCES projects(id)
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)
     ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO auth_users VALUES (
-          'super', 'super-project1', 'edit');`)).then(
+          'super', 1, 'edit');`)).then(
   connection.execute(`
     CREATE TABLE log (
-    id varchar(45) NOT NULL,
-    project_id varchar(45) NOT NULL,
+    log_id varchar(45) NOT NULL,
+    project_id INT(255) NOT NULL,
     user VARCHAR(45) NOT NULL,
     object VARCHAR(45) NOT NULL,
     action VARCHAR(45) NOT NULL,
     origin VARCHAR(45),
     target VARCHAR(45),
     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (project_id) REFERENCES projects(id)
+    PRIMARY KEY (log_id),
+    FOREIGN KEY (project_id) REFERENCES projects(project_id)
     ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'log1', 'super-project1', 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'log1', 1, 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'log2', 'super-project1', 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
+          'log2', 1, 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
   connection.execute(`
     CREATE TABLE tasks (
-    id varchar(45) NOT NULL,
-    lane_id varchar(45) NOT NULL,
+    task_id INT(255) NOT NULL,
+    frg_lane_id INT(255) NOT NULL,
     title VARCHAR(45) NOT NULL,
     content VARCHAR(45),
     img VARCHAR(45),
@@ -165,25 +165,25 @@ async function init() {
     next VARCHAR(45),
     prev VARCHAR(45),
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    PRIMARY KEY (id),
-    FOREIGN KEY (lane_id) REFERENCES lanes(id)
+    PRIMARY KEY (task_id),
+    FOREIGN KEY (frg_lane_id) REFERENCES lanes(lane_id)
     ON DELETE CASCADE)
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          't1', 'l2', '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          1, 2, '공부하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          't2', 'l2', '물마시기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          2, 2, '물마시기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          't3', 'l1', '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          3, 1, '운동하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          't4', 'l3', '밥먹기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          4, 3, '밥먹기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO tasks VALUES (
-          't5', 'l4', '~~하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
+          5, 4, '~~하기', '내용내용', ${null}, ${null}, ${null}, ${null}, ${null});`)).then(
   () => {
     connection.end()
     console.log('Database initializing end')

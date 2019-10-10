@@ -79,12 +79,6 @@ $('#create-lane-submit').addEventListener('click', e => {
     .catch(error => console.error('Error:', error));    
 
 
-
-
-
-
-
-
 })
 
 // Edit clicked lane title
@@ -118,8 +112,9 @@ $('#new-task-submit').addEventListener('click', () => {
 $('#delete-lane-confirm').addEventListener('click', e => {
 
     // Front
-    const deleteTargetId = $('.selected-lane').parentNode.parentNode.parentNode.id
-    const targetLane = $(`#${deleteTargetId}`)
+    const deleteTargetId = $('.selected-lane').parentNode.parentNode.parentNode.id.slice(1)
+    console.log($('.selected-lane').parentNode.parentNode.parentNode)
+    const targetLane = $(`#l${deleteTargetId}`)
     targetLane.parentNode.removeChild(targetLane)
 
     // Back (DB)
@@ -142,7 +137,7 @@ $('#delete-lane-confirm').addEventListener('click', e => {
 const createNewLane = (id, title) => {
     const newLane = document.createElement('div');
     newLane.innerHTML = /*html*/`
-                        <div class="lane" id="${id}">
+                        <div class="lane" id="l${id}">
                             <div class="lane-header">
                                 <div class="lane-title">${title}</div>
                                 <div class="icons">

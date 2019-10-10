@@ -36,13 +36,14 @@ router.get('/:user_id', util.checkLogin, function(req, res, next) {
 router.get('/:user_id/:project_id', util.checkLogin, function(req, res, next) {
     pool.query(`SELECT *
                 FROM lanes 
-                INNER JOIN tasks ON tasks.lane_id = lanes.id
+                LEFT JOIN tasks ON tasks.frg_lane_id = lanes.lane_id
                 where project_id = '${req.params.project_id}'
-                order by lanes.id;`, 
+                order by lanes.lane_id;`, 
     (err, results) => {
         lanes = util.bindTasks(results)
-        pool.query(`SELECT name FROM projects where id = '${req.params.project_id}';`, 
+        pool.query(`SELECT name FROM projects where project_id = '${req.params.project_id}';`, 
         (err, result) => {
+            console.log(results)
             return res.render('project_single', {
                 user: req.user,
                 project_name: result[0].name,

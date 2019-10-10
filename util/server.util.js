@@ -45,8 +45,12 @@ module.exports = {
     bindTasks(tasks) {
         const res = {}
         tasks.forEach( task => {
+            console.log(task)
             if(res[task.lane_id]){
                 res[task.lane_id].push(task)
+            }
+            else if (task.lane_id === null) {
+                res[task.name] = [task]
             }
             else {
                 res[task.lane_id] = [task]

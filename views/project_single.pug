@@ -11,7 +11,7 @@ block content
     
         each lane in lanes
             div
-                .lane(id=`${lane[0].lane_id}`)
+                .lane(id=`l${lane[0].lane_id}`)
                     .lane-header
                         .lane-title #{lane[0].name}
                         .icons
@@ -19,15 +19,15 @@ block content
                             a.add-task(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') ➕
                             a.delete-lane-btn(data-toggle='modal' data-target='#delete-lane-check' data-whatever='@getbootstrap') &#10008;
                             
-
                     each task in lane
-                        .card(id=`${task.id}`)
-                            if task.img
-                                img.card-img-top(src='...' alt='...')
-                            .card-body
-                                .card-close &#10008;
-                                h5.card-title #{task.title} 
-                                p.card-text #{task.content}
+                        if task.title
+                            .card(id=`t${task.id}`)
+                                if task.img
+                                    img.card-img-top(src='...' alt='...')
+                                .card-body
+                                    .card-close &#10008;
+                                    h5.card-title #{task.title} 
+                                    p.card-text #{task.content}
 
         a.lane-add(data-toggle='modal' data-target='#create-lane-form' data-whatever='@getbootstrap')
             .lane-add-title(data-toggle="modal" data-target="#exampleModal") + Add Column

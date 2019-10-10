@@ -8,10 +8,10 @@ const model = require('../model/project')
 router.post('/', util.checkLogin, function (req, res) {
 
     // 해당 유저의 가장 마지막 프로젝트 아이디 가져오기
-    pool.query(`SELECT id
+    pool.query(`SELECT project_id
                 FROM projects
-                WHERE id LIKE '${req.user.user_id}%'
-                ORDER BY id DESC
+                WHERE project_id LIKE '${req.user.user_id}%'
+                ORDER BY project_id DESC
                 LIMIT 1;`, (err, results) => {
                     if (err) console.log(err.message)
                     if (!results.length) return res.render('sorry')
@@ -48,12 +48,13 @@ router.put('/lane', util.checkLogin, function (req, res, next) {
 
 router.get('/new_lane_id', util.checkLogin, async function (req, res, next) {
     const lastLaneId = await model.getLastLaneId()
-    const newLaneId = 'l' + (Number(lastLaneId[0][0].id.slice(1)) + 1)
+    const newLaneId = Number(lastLaneId[0][0].lane_id) + 1
     res.send({newLaneId : newLaneId})
 })
 
 // Column 삭제
 router.delete('/lane', util.checkLogin, function (req, res, next) {
+    console.log(req.body)
     model.removeLane(req.body.lane_id)
     return
 })
