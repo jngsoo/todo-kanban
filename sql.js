@@ -136,7 +136,7 @@ async function init() {
           'super', 1, 'edit');`)).then(
   connection.execute(`
     CREATE TABLE log (
-    log_id varchar(45) NOT NULL,
+    log_id INT(255) NOT NULL AUTO_INCREMENT,
     project_id INT(255) NOT NULL,
     user VARCHAR(45) NOT NULL,
     object VARCHAR(45) NOT NULL,
@@ -150,10 +150,10 @@ async function init() {
     ENGINE=InnoDB DEFAULT CHARSET=utf8;`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'log1', 1, 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
+          1, 1, 'super', '공부하기', '추가', ${null}, ${null}, ${null});`)).then(
         connection.execute(`
           INSERT INTO log VALUES (
-          'log2', 1, 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
+          2, 1, 'super', '운동하기', '추가', ${null}, ${null}, ${null});`)).then(
   connection.execute(`
     CREATE TABLE tasks (
     task_id INT(255) NOT NULL,

@@ -24,8 +24,6 @@ router.post('/', function (req, res) {
         ('${userInfo.id}', '${userInfo.pw}', '${userInfo.name}', '${userInfo.birthdate.join('.')}', '${userInfo.email}', '${userInfo.phone}', '${userInfo.interests.join(',')}', 'false', ${null});
         `)
 
-        console.log("NEW User Registered!")
-        console.log(JSON.parse(bodyStr))
         res.send('ok')   // 결과를 받은 client는 '/'으로 redirect (../public/javscripts/Sign_up.js : line 351)
     })
 })

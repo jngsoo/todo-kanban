@@ -25,7 +25,6 @@ const queryAdminChange = () => {
     adminChecked.forEach(user => {
         adminCheckedUsers.push(user.parentNode.parentNode.querySelector('.userid').textContent)
     })
-    // console.log(adminCheckedUsers)
     postData('/admin', {adminUsers: adminCheckedUsers}).then( (data) => {
         alert(`${data}\n 관리자 설정 완료`)
         location.replace('/admin')

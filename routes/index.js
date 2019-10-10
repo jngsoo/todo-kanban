@@ -40,15 +40,21 @@ router.get('/:user_id/:project_id', util.checkLogin, function(req, res, next) {
                 where project_id = '${req.params.project_id}'
                 order by lanes.lane_id;`, 
     (err, results) => {
-        lanes = util.bindTasks(results)
+        const lanes = util.bindTasks(results)
         pool.query(`SELECT name FROM projects where project_id = '${req.params.project_id}';`, 
         (err, result) => {
-            console.log(results)
-            return res.render('project_single', {
-                user: req.user,
-                project_name: result[0].name,
-                lanes: lanes
+            const projectName = result[0].name
+            pool.query(`SELECT * FROM log where project_id = '${req.params.project_id}' ORDER BY time DESC;`,
+            (err, results) => {
+                const logs = results
+                return res.render('project_single', {
+                    user: req.user,
+                    project_name: projectName,
+                    lanes: lanes,
+                    logs : logs
+                })
             })
+
         })
 
     })

@@ -7,6 +7,15 @@ block bootstrap
 block content
     .project-info
         h1.project-name #{project_name}
+        h1.log-bell(data-toggle='dropdown' aria-haspopup='true' aria-expanded='false') 🔔
+        .dropdown-menu.log(aria-labelledby='log')
+            each log in logs
+                if (log.origin && log.target)
+                    p.dropdown-item [#{log.time}] #{log.user} 님이 #{log.object}를 #{log.origin}에서 #{log.target}으로 #{log.action}했습니다.
+                else if(log.origin)
+                    p.dropdown-item [#{log.time}] #{log.user} 님이 #{log.object}를 #{log.origin}에(서) #{log.action}했습니다.
+                else
+                    p.dropdown-item [#{log.time}] #{log.user} 님이 #{log.object}를 #{log.action}했습니다.
     .lane-container
     
         each lane in lanes
@@ -16,12 +25,12 @@ block content
                         .lane-title #{lane[0].name}
                         .icons
                             a.edit-lane-name-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') &#9997;
-                            a.add-task(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') ➕
+                            a.add-task-btn(data-toggle='modal' data-target='#create-task-form' data-whatever='@getbootstrap') ➕
                             a.delete-lane-btn(data-toggle='modal' data-target='#delete-lane-check' data-whatever='@getbootstrap') &#10008;
                             
                     each task in lane
                         if task.title
-                            .card(id=`t${task.id}`)
+                            .card(id=`t${task.task_id}`)
                                 if task.img
                                     img.card-img-top(src='...' alt='...')
                                 .card-body
@@ -86,7 +95,7 @@ block content
                                 button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
 
 
-    #new-task-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
+    #create-task-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true')
         .modal-dialog(role='document')
             .modal-content
                 form(action='/project/task' method='POST')
@@ -97,13 +106,13 @@ block content
                     .modal-body
                         
                             .form-group
-                                label.col-form-label(for='project-name') 제목
-                                input#task-title.form-control(type='text' name="task_title")
+                                label.col-form-label(for='create-task-title') 제목
+                                input#create-task-title.form-control(type='text' name="task_title")
                             .form-group
-                                label.col-form-label(for='task-content') 내용
-                                textarea#task-content.form-control(rows="5" type='textarea' name="task_content")
+                                label.col-form-label(for='create-task-content') 내용
+                                textarea#create-task-content.form-control(rows="5" type='textarea' name="task_content")
                     .modal-footer
-                        button#new-task-submit.btn.btn-primary(type='button' data-dismiss='modal') 추가하기
+                        button#create-task-submit.btn.btn-primary(type='button' data-dismiss='modal') 추가하기
                         button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
     
     // Bootstrap

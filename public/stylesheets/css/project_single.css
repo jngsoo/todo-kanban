@@ -2,12 +2,31 @@
     border: hidden; }
   
   .project-info {
-      margin: 5rem 0rem 0rem 3rem;
-      text-align: center;
+    display: inline-flex;
+    width: 90%;
+    margin: 6rem 1rem 0rem 5rem;
   }
   .project-info > .project-name {
-  
+    margin: 0.5rem;
       color: gray;
+     
+  }
+  .project-info > .log-bell {
+     margin: auto 1rem auto auto;
+     border: hidden;
+  }
+    .project-info > .log-bell:hover {
+    cursor: pointer;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    perspective: 100%;
+  }
+
+  .log {
+    margin-right: 3rem;
+    opacity: 0.8;
+
   }
   
   .lane-container {
@@ -32,10 +51,15 @@
     width: 17rem;
     align-items: center;
 }
+  .lane-title {
+    text-align: left;
+    margin: 0.5rem;
+    height: 2rem;
+    font-size: 1.2rem; }
+  
 
 .lane-header > .icons {
     margin: auto 0.3rem auto auto;
-    float: right;
     color: #454242;
     font-size: 120%;
   }
@@ -48,12 +72,7 @@
  }
   
   
-  .lane-title {
-    text-align: left;
-    margin: 0.5rem;
-    height: 2rem;
-    font-size: 1.2rem; }
-  
+
   .lane-add {
     border: dotted 0.05rem gray;
     border-radius: 1rem;
@@ -83,3 +102,21 @@
   .card-close:hover {
     cursor: pointer;
   }
+
+  @keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}

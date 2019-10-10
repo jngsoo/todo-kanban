@@ -18,7 +18,7 @@ block content
             .projects-container
                 each project in projects
                     .project-container
-                        a.project(href=`/${project.super_user}/${project.project_id}` id=`${project.id}`)
+                        a.project(href=`/${project.super_user}/${project.project_id}` id=`${project.project_id}`)
                             .project-title #{project.name}
                                 case project.read_auth_public
                                     when 'true'
