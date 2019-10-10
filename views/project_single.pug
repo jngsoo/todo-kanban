@@ -13,12 +13,10 @@ block content
             .lane(id=`${lane[0].lane_id}`)
                 .lane-header
                     .lane-title #{lane[0].name}
-                    .dropdown
-                        button#dropdownMenuButton.btn.btn-light.dropdown-toggle(type='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='true')
-                        .dropdown-menu(aria-labelledby='dropdownMenuButton')
-                            a.dropdown-item(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') 추가
-                            a.dropdown-item.edit-lane-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') 수정
-                            a.dropdown-item() 삭제
+                    .icons
+                        a.add-task.edit-lane-btn(data-toggle='modal' data-target='#edit-lane-form' data-whatever='@getbootstrap') &#9997;
+                        a.edit-lane-name(data-toggle='modal' data-target='#new-task-form' data-whatever='@getbootstrap') ➕ 
+                        a.delete-lane(data-toggle='modal' data-target='#delete-task-check' data-whatever='@getbootstrap') &#10008;
                             
 
                 each task in lane
@@ -26,12 +24,29 @@ block content
                         if task.img
                             img.card-img-top(src='...' alt='...')
                         .card-body
-                            .card-close &times;
+                            .card-close &#10008;
                             h5.card-title #{task.title} 
                             p.card-text #{task.content}
 
         .lane-add
             .lane-add-title(data-toggle="modal" data-target="#exampleModal") + Add Column
+
+    
+    // Modals below
+
+    #delete-task-check.modal.fade(tabindex='-1' role='dialog' aria-labelledby='delete-lane-check' aria-hidden='true')
+        .modal-dialog(role='document')
+            .modal-content
+                form(action='/project/lane' method='PUT')
+                    .modal-header
+                        h5#delete-lane-check.modal-title Delete Column
+                        button.close(type='button' data-dismiss='modal' aria-label='Close')
+                            span(aria-hidden='true') &#10008;
+                    .modal-body
+                        h5 해당 Column을 삭제하시겠습니까?
+                    .modal-footer
+                        button#delete-lane-confirm.btn.btn-primary(type='button' data-dismiss='modal') 삭제하기
+                        button.btn.btn-secondary(type='button' data-dismiss='modal') 닫기
 
     #edit-lane-form.modal.fade(tabindex='-1' role='dialog' aria-labelledby='edit-lane' aria-hidden='true')
         .modal-dialog(role='document')
@@ -40,7 +55,7 @@ block content
                     .modal-header
                         h5#edit-lane.modal-title Edit Column
                         button.close(type='button' data-dismiss='modal' aria-label='Close')
-                            span(aria-hidden='true') &times;
+                            span(aria-hidden='true') &#10008;
                     .modal-body
                         
                             .form-group
@@ -59,7 +74,7 @@ block content
                     .modal-header
                         h5#exampleModalLabel.modal-title New note
                         button.close(type='button' data-dismiss='modal' aria-label='Close')
-                            span(aria-hidden='true') &times;
+                            span(aria-hidden='true') &#10008;
                     .modal-body
                         
                             .form-group

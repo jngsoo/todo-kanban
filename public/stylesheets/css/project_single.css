@@ -23,19 +23,29 @@
     margin: 0 1rem 0 1rem;
     flex: 1;
     min-width: 18rem;
+    min-height: 12rem;
     max-width: 20rem;
     border-radius: 1rem; }
      
 .lane-header {
     display: flex;
+    align-items: center;
 }
 
-.lane-header > .dropdown > .dropdown-toggle {
-  position: absolute;
-  margin: 1rem 0rem 1rem 11rem;
-  border: gray solid 0.05rem;
-  background-color: white;
-}
+.lane-header > .icons {
+    position: absolute;
+    margin-left: 14rem;
+    color: #454242;
+    font-size: 120%;
+  }
+
+ .lane-header > .icons > a:hover {
+    cursor: pointer;
+    font-size: 120%;
+    transition: 220ms;
+
+ }
+  
   
   .lane-title {
     text-align: left;
@@ -49,8 +59,8 @@
     display: flex;
     margin: 0rem 1rem 0rem 1rem;
     min-width: 18rem;
-    max-width: 20rem;
-    min-height: 10rem; }
+    min-height: 12rem;
+    max-width: 20rem; }
     .lane-add .lane-add-title {
       margin: auto; }
   

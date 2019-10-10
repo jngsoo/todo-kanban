@@ -27,15 +27,17 @@ router.post('/', util.checkLogin, function (req, res) {
 
 })
 
+router.delete('/', util.checkLogin, function (req, res, next) {
+    model.cascadeRemove(req.body.project_id)
+})
+
 router.put('/lane', util.checkLogin, function (req, res, next) {
     const laneId = req.body.lane_id
     const newTitle = req.body.lane_title
     model.editLaneTitle(laneId, newTitle)
 })
 
-router.delete('/', util.checkLogin, function (req, res, next) {
-    model.cascadeRemove(req.body.project_id)
-})
+
 
 router.delete('/task', util.checkLogin, function (req, res, next) {
     model.removeTask(req.body.task_id)

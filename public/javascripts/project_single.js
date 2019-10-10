@@ -64,3 +64,7 @@ $('#edit-lane-submit').addEventListener('click', e => {
 $('#new-pjt-submit').addEventListener('click', () => {
     alert('new pjt submit!')
 })
+
+$('#delete-lane-confirm').addEventListener('click', () => {
+    alert('del lane confirm!')
+})

@@ -26,7 +26,6 @@ module.exports = {
         pool.query(`DELETE FROM tasks WHERE id = '${task_id}';`)
     },
     editLaneTitle(lane_id, title) {
-        console.log('editlanetitle!')
         pool.query(`UPDATE lanes SET name='${title}' WHERE id = '${lane_id}';`)
     }
 }
