@@ -1,4 +1,4 @@
-# 멤버십 프로젝트 - 웹할일관리 저장소
+# Todo Service - kanban board
 
 ### Demo
 http://220.230.118.56:3000
@@ -6,14 +6,13 @@ http://220.230.118.56:3000
 ##### Test id, pw
 ```
 Test user
-id : super
-pw : super
+id : guest
+pw : !Guest1234
 
 Admin user
 id : admin
 pw : admin
 ```
-
 
 ---
 ### 데이터베이스 구조
@@ -28,19 +27,22 @@ pw : admin
 
 - `/` : Home (root)
 
-  ![](https://i.imgur.com/LgbPNAO.png)
+  ![](https://i.imgur.com/Frd3DID.png)
 
   ---
 
 - `/:user_id` : 해당 유저의 프로젝트 목록들
 
-  ![](https://i.imgur.com/ZvXUuqJ.png)
+  ![](https://i.imgur.com/f4DZOe0.png)
+
+  ![](https://i.imgur.com/9fjikOv.png)
 
   ---
 
 - `/:user_id/:project_id` : 특정 유저의 특정 프로젝트 페이지 (Todo 등)
 
-  ![](https://i.imgur.com/upRKbc5.png)
+  ![](https://i.imgur.com/5bjme8s.png)
+  ![](https://i.imgur.com/tAinNBf.png)
 
   ---
 
